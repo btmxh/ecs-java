@@ -1,2 +1,4 @@
 rootProject.name = 'ecs-java'
+include 'core'
+include 'core'
 
