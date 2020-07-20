@@ -25,16 +25,16 @@ public class EntitySystem<RD> implements Comparable<EntitySystem<RD>>{
     }
 
     @Override
-    public int compareTo(@NotNull EntitySystem<RD> o) {
+    public final int compareTo(@NotNull EntitySystem<RD> o) {
         return Integer.compare(priority, o.priority);
     }
 
-    public void addToEngine(Engine<RD> engine) {
+    protected void addToEngine(Engine<RD> engine) {
         engine.systemManager.add(this);
         this.engine = engine;
     }
 
-    public void removeFromEngine(Engine<RD> engine) {
+    protected void removeFromEngine(Engine<RD> engine) {
         engine.systemManager.remove(getKeyClass());
         this.engine = null;
     }

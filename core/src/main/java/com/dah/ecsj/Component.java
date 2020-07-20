@@ -2,18 +2,12 @@ package com.dah.ecsj;
 
 public class Component {
 
-    private Engine<?> engine;
-
-    protected Component(Engine<?> engine) {
-        this.engine = engine;
+    protected int getTypeID(Engine<?> engine) {
+        return engine.typeIndexer.next(getClass());
     }
 
-    protected final ComponentType getTypeFromClass(Class<? extends Component> clazz) {
-        return new ComponentType(engine, clazz);
-    }
-
-    protected ComponentType getType() {
-        return getTypeFromClass(getClass());
+    protected final ComponentType getType(Engine<?> engine) {
+        return new ComponentType(getTypeID(engine));
     }
 
 }

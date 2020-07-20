@@ -4,6 +4,7 @@ import com.dah.ecsj.Engine;
 import com.dah.ecsj.Entity;
 import com.dah.ecsj.EntitySystem;
 import com.dah.ecsj.Family;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class FamilySystem<RD> extends EntitySystem<RD> {
         this.family = family;
     }
 
-    public void addToEngine(Engine<RD> engine) {
+    protected void addToEngine(Engine<RD> engine) {
         super.addToEngine(engine);
         entities = engine.familyManager.register(family);
     }
 
     @Override
-    public void removeFromEngine(Engine<RD> engine) {
+    protected void removeFromEngine(Engine<RD> engine) {
         super.removeFromEngine(engine);
         entities = null;
     }
@@ -38,6 +39,6 @@ public class FamilySystem<RD> extends EntitySystem<RD> {
         }
     }
 
-    protected void run(Entity entity, RD runData) {
+    protected void run(@NotNull Entity entity, @NotNull RD runData) {
     }
 }

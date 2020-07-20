@@ -24,4 +24,12 @@ public class Engine<RD> {
         }
     }
 
+    public void add(EntitySystem<RD> system) {
+        system.addToEngine(this);
+    }
+
+    public void remove(EntitySystem<RD> system) {
+        system.removeFromEngine(this);
+    }
+
 }

@@ -11,28 +11,34 @@ public interface Family {
         private BitSet one = new BitSet();
         private BitSet exclude = new BitSet();
 
-        public void all(int idx) {
+        public BitFamilyBuilder all(int idx) {
             all.set(idx);
+            return this;
         }
 
-        public void all(ComponentType type) {
+        public BitFamilyBuilder all(ComponentType type) {
             all.set(type.getId());
+            return this;
         }
 
-        public void one(int idx) {
+        public BitFamilyBuilder one(int idx) {
             one.set(idx);
+            return this;
         }
 
-        public void one(ComponentType type) {
+        public BitFamilyBuilder one(ComponentType type) {
             one.set(type.getId());
+            return this;
         }
 
-        public void exclude(int idx) {
+        public BitFamilyBuilder exclude(int idx) {
             exclude.set(idx);
+            return this;
         }
 
-        public void exclude(ComponentType type) {
+        public BitFamilyBuilder exclude(ComponentType type) {
             exclude.set(type.getId());
+            return this;
         }
 
         public BitFamily get() {

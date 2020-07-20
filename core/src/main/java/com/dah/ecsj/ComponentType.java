@@ -16,6 +16,10 @@ public class ComponentType {
         this(engine.typeIndexer, clazz);
     }
 
+    public ComponentType(int typeID) {
+        this.id = typeID;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
