@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Engine<RD> {
     protected final Indexer<Class<? extends Component>> typeIndexer = new Indexer<>();
     public final EntityManager entityManager = new EntityManager(this);
-    public final SystemManager<RD> systemManager = new SystemManager<>();
+    public final SystemManager<RD> systemManager = new SystemManager<>(this);
     public final FamilyManager familyManager = new FamilyManager(this);
 
     public <C> C newComponent(Class<? extends C> clazz) {
@@ -22,14 +22,6 @@ public class Engine<RD> {
         for (@SuppressWarnings("rawtypes") Class<? extends EntitySystem> key : systemManager.systems.keySet()) {
             systemManager.systems.get(key).run(runData);
         }
-    }
-
-    public void add(EntitySystem<RD> system) {
-        system.addToEngine(this);
-    }
-
-    public void remove(EntitySystem<RD> system) {
-        system.removeFromEngine(this);
     }
 
 }

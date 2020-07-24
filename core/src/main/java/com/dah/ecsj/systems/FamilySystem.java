@@ -6,11 +6,12 @@ import com.dah.ecsj.EntitySystem;
 import com.dah.ecsj.Family;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
 import java.util.List;
 
 public class FamilySystem<RD> extends EntitySystem<RD> {
     private final Family family;
-    private List<Entity> entities;
+    private Collection<Entity> entities;
 
     public FamilySystem(Family family) {
         this.family = family;

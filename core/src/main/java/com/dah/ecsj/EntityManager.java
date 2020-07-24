@@ -26,11 +26,15 @@ public class EntityManager {
     public void add(Entity entity) {
         entities.add(entity);
         engine.familyManager.addEntity(entity);
+        entity.engine = engine;
     }
 
     public void remove(Entity entity) {
-        entities.remove(entity);
-        engine.familyManager.removeEntity(entity);
+        boolean removed = entities.remove(entity);
+        if(removed) {
+            engine.familyManager.removeEntity(entity);
+            entity.engine = null;
+        }
     }
 
     public void removeAll(@NotNull Collection<?> c) {
@@ -42,6 +46,6 @@ public class EntityManager {
     }
 
     public void clear() {
-        entities.clear();
+        removeAll(entities);
     }
 }

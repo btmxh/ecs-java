@@ -1,6 +1,7 @@
 package com.dah.ecsj.utils;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class GrowableArray<T> {
     private Object[] elements;
@@ -29,7 +30,7 @@ public class GrowableArray<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public T setAndReturn(int idx, T element) {
+    public T setAndReturnOld(int idx, T element) {
         if(elements.length <= idx) {
             elements = new Object[Math.max(idx + 1, (int) (elements.length * growScale))];
         }
@@ -51,11 +52,26 @@ public class GrowableArray<T> {
 
     @SuppressWarnings("unchecked")
     public T get(int idx) {
+        if(idx >= size) return null;
         return (T) elements[idx];
     }
 
     public void clear() {
         Arrays.fill(elements, null);
         size = 0;
+    }
+
+    public int indexOf(T t) {
+        for(int i = 0; i < size; i++) {
+            if(Objects.equals(t, elements[i]))  return i;
+        }
+        return -1;
+    }
+
+    public int indexOfIdentity(T t) {
+        for(int i = 0; i < size; i++) {
+            if(t == elements[i])    return i;
+        }
+        return -1;
     }
 }

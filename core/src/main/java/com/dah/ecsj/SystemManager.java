@@ -7,11 +7,18 @@ public final class SystemManager<RD> {
     @SuppressWarnings("rawtypes")
     protected final Map<Class<? extends EntitySystem>, EntitySystem<RD>> systems = new HashMap<>();
 
+    private final Engine<RD> engine;
+
+    public SystemManager(Engine<RD> engine) {
+        this.engine = engine;
+    }
+
     public void add(EntitySystem<RD> system) {
-        systems.put(system.getKeyClass(), system);
+        system.addToEngine(engine);
     }
 
     public void remove(@SuppressWarnings("rawtypes") Class<? extends EntitySystem> clazz) {
-        systems.remove(clazz);
+        EntitySystem<RD> system = systems.get(clazz);
+        if(system != null)  system.removeFromEngine(engine);
     }
 }

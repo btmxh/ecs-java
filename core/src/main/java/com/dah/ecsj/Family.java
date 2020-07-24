@@ -6,6 +6,10 @@ public interface Family {
 
     boolean matches(Entity entity);
 
+    static BitFamilyBuilder bitBuilder() {
+        return new BitFamilyBuilder();
+    }
+
     class BitFamilyBuilder {
         private BitSet all = new BitSet();
         private BitSet one = new BitSet();
@@ -62,6 +66,7 @@ public interface Family {
         @Override
         public boolean matches(Entity entity) {
             var compBits = new BitSet();
+
             if(all != null) {
                 entity.getCompBitsCopy(compBits);
                 compBits.and(all);
@@ -77,6 +82,7 @@ public interface Family {
                 entity.getCompBitsCopy(compBits);
                 if(exclude.intersects(compBits))    return false;
             }
+
 
             return true;
         }

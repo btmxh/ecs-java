@@ -30,12 +30,12 @@ public class EntitySystem<RD> implements Comparable<EntitySystem<RD>>{
     }
 
     protected void addToEngine(Engine<RD> engine) {
-        engine.systemManager.add(this);
+        engine.systemManager.systems.put(getKeyClass(), this);
         this.engine = engine;
     }
 
     protected void removeFromEngine(Engine<RD> engine) {
-        engine.systemManager.remove(getKeyClass());
+        engine.systemManager.systems.remove(getKeyClass());
         this.engine = null;
     }
 }
